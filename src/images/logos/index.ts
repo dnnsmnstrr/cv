@@ -15,6 +15,7 @@ import ParabolLogo from "./parabol.svg";
 import TastyCloudLogo from "./tastycloud.png";
 import YearProgressLogo from "./yearprogress.svg";
 import Minimal from "./minimal.svg";
+import HpmLogo from "./logo.svg";
 
 export {
   ConsultlyLogo,
@@ -25,6 +26,7 @@ export {
   ClevertechLogo,
   EvercastLogo,
   Howdy,
+  HpmLogo,
   JarockiMeLogo,
   JojoMobileLogo,
   MonitoLogo,
