@@ -16,6 +16,7 @@ import {
   ParabolLogo,
   TastyCloudLogo,
   YearProgressLogo,
+  HpmLogo
 } from "@/images/logos";
 import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
 
@@ -69,7 +70,7 @@ export const RESUME_DATA = {
       end: "2018",
     },
     {
-      school: "FES Wiesbade",
+      school: "FES Wiesbaden",
       degree: "Apprenticeship 'Fachinformatiker für Anwendungsentwicklung'",
       start: "2019",
       end: "2022",
@@ -81,7 +82,7 @@ export const RESUME_DATA = {
       link: "https://hpm.agency",
       badges: ["Remote"],
       title: "Developer",
-      logo: ParabolLogo,
+      logo: HpmLogo,
       start: "2021",
       end: "2024",
       description:
@@ -104,7 +105,6 @@ export const RESUME_DATA = {
         "React Native",
       ],
       description: "A redirect service with support for aliases",
-      logo: ConsultlyLogo,
       link: {
         label: "tesora.app",
         href: "https://tesora.app/",
@@ -118,7 +118,6 @@ export const RESUME_DATA = {
         "Next.js",
       ],
       description: "A redirect service with support for aliases",
-      logo: ConsultlyLogo,
       link: {
         label: "redairect.com",
         href: "https://redairect.com/",
@@ -129,7 +128,6 @@ export const RESUME_DATA = {
       techStack: ["Side Project", "Raycast Extension"],
       description:
         "An extension for Raycast to trigger named triggers in the BetterTouchTool application for macOS",
-      logo: Minimal,
       link: {
         label: "BTT in the Raycast Store",
         href: "https://www.raycast.com/dnnsmnstrr/bettertouchtool",
