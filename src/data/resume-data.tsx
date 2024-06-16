@@ -20,21 +20,25 @@ import {
 } from "@/images/logos";
 import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
 
+const name = "Dennis Muensterer"
 const USERNAME_SHORT = 'dnnsmnstrr'
-const USERNAME_LONG = 'dennismuensterer'
+const USERNAME_LONG = name.replaceAll(' ', '').toLocaleLowerCase()
 const email = USERNAME_LONG + '@gmail.com'
 
+const summary = `As a full stack developer, I have worked on various projects, from mobile apps to websites.
+Since starting my dev journey at the Apple Developer Academy in Naples, I have garnered over 5 years of work experience, crafting cross-platform and web-based experiences for clients from a wide range of industries.`
+
+const initials = name.split(' ').map(name => name.slice(0, 1)).join('')
 export const RESUME_DATA = {
-  name: "Dennis Muensterer",
-  initials: "DM",
+  name,
+  initials,
   location: "Mainz, Germany",
   locationLink: "https://www.google.com/maps/place/Mainz",
   about:
     "Developer and Maker",
-  summary:
-    "As a full stack developer, I have worked on various projects, from mobile apps to web platforms. Currently, I work mostly with TypeScript and Svelte. I have over 5 years of experience, starting at the Apple Developer Academy in Naples.",
+  summary,
   avatarUrl: "https://avatars.githubusercontent.com/u/3686989?v=4",
-  personalWebsiteUrl: "https://muensterer.lol",
+  personalWebsiteUrl: "https://muensterer.tech",
   contact: {
     email,
     tel: "+4915730967248",
@@ -83,10 +87,10 @@ export const RESUME_DATA = {
       badges: ["Remote"],
       title: "Developer",
       logo: HpmLogo,
-      start: "2021",
+      start: "2019",
       end: "2024",
       description:
-        "Implemented new features, led squad, worked on improving the way developers ship the code, started migration from Emotion to Tailwind CSS and more. Technologies: React, TypeScript, GraphQL",
+        "Worked on different applications for industrial clients, including multiple document-management systems and mobile applications to remotely monitor/control machines",
     },
   ],
   skills: [
@@ -95,6 +99,8 @@ export const RESUME_DATA = {
     "React/React-Native",
     "Svelte/SvelteKit",
     "Node.js",
+    "Swift",
+    "Docker",
   ],
   projects: [
     {
@@ -104,30 +110,17 @@ export const RESUME_DATA = {
         "JavaScript",
         "React Native",
       ],
-      description: "A redirect service with support for aliases",
+      description: "Local-first mobile app to track valuable assets created by hpm. I was responsible for the development of the mobile app.",
       link: {
         label: "tesora.app",
         href: "https://tesora.app/",
       },
     },
     {
-      title: "Redairect",
-      techStack: [
-        "Side Project",
-        "TypeScript",
-        "Next.js",
-      ],
-      description: "A redirect service with support for aliases",
-      link: {
-        label: "redairect.com",
-        href: "https://redairect.com/",
-      },
-    },
-    {
       title: "Raycast BetterTouchTool",
       techStack: ["Side Project", "Raycast Extension"],
       description:
-        "An extension for Raycast to trigger named triggers in the BetterTouchTool application for macOS",
+        "Open-source extension for Raycast to interface with the BetterTouchTool application for macOS",
       link: {
         label: "BTT in the Raycast Store",
         href: "https://www.raycast.com/dnnsmnstrr/bettertouchtool",
