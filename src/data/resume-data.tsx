@@ -62,10 +62,10 @@ export const RESUME_DATA = {
   },
   education: [
     {
-      school: "TU Munich & Darmstadt",
-      degree: "Engineering & Computer Science",
-      start: "2016",
-      end: "2019",
+      school: "FES Wiesbaden",
+      degree: "Apprenticeship 'Fachinformatiker für Anwendungsentwicklung'",
+      start: "2019",
+      end: "2022",
     },
     {
       school: "Apple Developer Academy",
@@ -74,10 +74,16 @@ export const RESUME_DATA = {
       end: "2018",
     },
     {
-      school: "FES Wiesbaden",
-      degree: "Apprenticeship 'Fachinformatiker für Anwendungsentwicklung'",
-      start: "2019",
-      end: "2022",
+      school: "TU Munich & Darmstadt",
+      degree: "Engineering & Computer Science",
+      start: "2016",
+      end: "2019",
+    },
+    {
+      school: "German International School New York",
+      degree: "Abitur & Highschool Diploma",
+      start: "2012",
+      end: "2015",
     },
   ],
   work: [
