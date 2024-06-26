@@ -22,16 +22,17 @@ export default function Page() {
           <div className="flex-1 space-y-1.5">
             <h1 className="text-2xl font-bold">{RESUME_DATA.name}</h1>
             <p className="max-w-md text-pretty font-mono text-sm text-muted-foreground">
-              {RESUME_DATA.about}
+              {RESUME_DATA.about} from {RESUME_DATA.location}
             </p>
+            
             <p className="max-w-md items-center text-pretty font-mono text-xs text-muted-foreground">
               <a
                 className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
-                href={RESUME_DATA.locationLink}
+                href={RESUME_DATA.personalWebsiteUrl}
                 target="_blank"
               >
                 <GlobeIcon className="h-3 w-3" />
-                {RESUME_DATA.location}
+                {RESUME_DATA.personalWebsiteUrl.replace('https://', '')}
               </a>
             </p>
             <div className="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden">
@@ -180,6 +181,15 @@ export default function Page() {
                   link={"link" in project ? project.link.href : undefined}
                 />
               );
+            })}
+          </div>
+        </Section>
+
+        <Section>
+          <h2 className="text-xl font-bold">Interests</h2>
+          <div className="flex flex-wrap gap-1">
+            {RESUME_DATA.interests.map((interest) => {
+              return <Badge key={interest}>{interest}</Badge>;
             })}
           </div>
         </Section>

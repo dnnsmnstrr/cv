@@ -25,14 +25,14 @@ const USERNAME_SHORT = 'dnnsmnstrr'
 const USERNAME_LONG = name.replaceAll(' ', '').toLocaleLowerCase()
 const email = USERNAME_LONG + '@gmail.com'
 
-const summary = `As a full stack developer, I have worked on various projects, from mobile apps to websites.
+const summary = `As a full stack developer, I have worked on a multitude of projects, from mobile apps to websites.
 Since starting my dev journey at the Apple Developer Academy in Naples, I have garnered over 5 years of work experience, crafting cross-platform and web-based experiences for clients from a wide range of industries.`
 
 const initials = name.split(' ').map(name => name.slice(0, 1)).join('')
 export const RESUME_DATA = {
   name,
   initials,
-  location: "Mainz, Germany",
+  location: "Mainz",
   locationLink: "https://www.google.com/maps/place/Mainz",
   about:
     "Developer and Maker",
@@ -96,7 +96,7 @@ export const RESUME_DATA = {
       start: "2019",
       end: "2024",
       description:
-        "Worked on different applications for industrial clients, including multiple document-management systems and mobile applications to remotely monitor/control machines",
+        "Worked on various projects for industrial clients, including mobile and web applications with React (Native) and SvelteKit, as well as backend development in Node.js with Actionhero",
     },
   ],
   skills: [
@@ -126,11 +126,21 @@ export const RESUME_DATA = {
       title: "Raycast BetterTouchTool",
       techStack: ["Side Project", "Raycast Extension"],
       description:
-        "Open-source extension for Raycast to interface with the BetterTouchTool application for macOS",
+        "Open-source extension for Raycast on macOS to control the BetterTouchTool application",
       link: {
         label: "BTT in the Raycast Store",
         href: "https://www.raycast.com/dnnsmnstrr/bettertouchtool",
       },
     },
+  ],
+  interests: [
+    "Music",
+    "3d Printing",
+    "Gaming",
+    "Raspberry Pi",
+    "Self-hosting",
+    "Home Automation",
+    "Virtual Reality",
+    "Personal Knowledge Management (Zettelkasten)"
   ],
 } as const;
