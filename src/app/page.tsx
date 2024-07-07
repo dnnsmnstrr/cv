@@ -1,3 +1,4 @@
+"use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,13 +9,51 @@ import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
+import { useState } from "react";
 
-export const metadata: Metadata = {
-  title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
-  description: RESUME_DATA.summary,
-};
+// export const metadata: Metadata = {
+//   title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
+//   description: RESUME_DATA.summary,
+// };
+
+const translations = {
+  de: {
+    about: 'Über mich',
+    actions: 'Aktionen',
+    changeLanguage: 'Sprache wechseln (English Language)',
+    education: 'Bildung',
+    from: 'aus',
+    interests: 'Interessen',
+    noResults: 'Keine Ergebnisse',
+    openMenu: 'um das Menü zu öffnen',
+    personalWebsite: 'Persönliche Webseite',
+    placeholder: 'Befehl eingeben oder suchen...',
+    press: "Drücke",
+    print: 'Drucken',
+    projects: 'Projekte',
+    skills: 'Fähigkeiten',
+    workExperience: 'Arbeitserfahrung'
+  },
+  en: {
+    about: 'About',
+    actions: 'Actions',
+    changeLanguage: 'Change Language (Deutsche Sprache)',
+    education: 'Education',
+    from: 'from',
+    interests: 'Interests',
+    noResults: 'No results found.',
+    personalWebsite: 'Personal Website',
+    placeholder: 'Type a command or search...',
+    press: "Press",
+    print: 'Print',
+    projects: 'Projects',
+    skills: 'Skills',
+    workExperience: 'Work Experience'
+  }
+} as const
 
 export default function Page() {
+  const [selectedLanguage, setSelectedLanguage] = useState<keyof typeof translations>('en')
   return (
     <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
       <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
@@ -22,7 +61,7 @@ export default function Page() {
           <div className="flex-1 space-y-1.5">
             <h1 className="text-2xl font-bold">{RESUME_DATA.name}</h1>
             <p className="max-w-md text-pretty font-mono text-sm text-muted-foreground">
-              {RESUME_DATA.about} from {RESUME_DATA.location}
+              {(selectedLanguage === 'en' ? RESUME_DATA.about : RESUME_DATA.translation.about)} {translations[selectedLanguage].from} {RESUME_DATA.location}
             </p>
             
             <p className="max-w-md items-center text-pretty font-mono text-xs text-muted-foreground">
@@ -94,14 +133,14 @@ export default function Page() {
           </Avatar>
         </div>
         <Section>
-          <h2 className="text-xl font-bold">About</h2>
+          <h2 className="text-xl font-bold">{translations[selectedLanguage].about}</h2>
           <p className="text-pretty font-mono text-sm text-muted-foreground">
-            {RESUME_DATA.summary}
+            {(selectedLanguage === 'en' ? RESUME_DATA.summary : RESUME_DATA.translation.summary)}
           </p>
         </Section>
         <Section>
-          <h2 className="text-xl font-bold">Work Experience</h2>
-          {RESUME_DATA.work.map((work) => {
+          <h2 className="text-xl font-bold">{translations[selectedLanguage].workExperience}</h2>
+          {(selectedLanguage === 'en' ? RESUME_DATA.work : RESUME_DATA.translation.work).map((work) => {
             return (
               <Card key={work.company}>
                 <CardHeader>
@@ -140,8 +179,8 @@ export default function Page() {
           })}
         </Section>
         <Section>
-          <h2 className="text-xl font-bold">Education</h2>
-          {RESUME_DATA.education.map((education) => {
+          <h2 className="text-xl font-bold">{translations[selectedLanguage].education}</h2>
+          {(selectedLanguage === 'en' ? RESUME_DATA.education : RESUME_DATA.translation.education).map((education) => {
             return (
               <Card key={education.school}>
                 <CardHeader>
@@ -160,18 +199,18 @@ export default function Page() {
           })}
         </Section>
         <Section>
-          <h2 className="text-xl font-bold">Skills</h2>
+          <h2 className="text-xl font-bold">{translations[selectedLanguage].skills}</h2>
           <div className="flex flex-wrap gap-1">
-            {RESUME_DATA.skills.map((skill) => {
+            {(selectedLanguage === 'en' ? RESUME_DATA.skills : RESUME_DATA.translation.skills || RESUME_DATA.skills).map((skill) => {
               return <Badge key={skill}>{skill}</Badge>;
             })}
           </div>
         </Section>
 
         <Section className="print-force-new-page scroll-mb-16">
-          <h2 className="text-xl font-bold">Projects</h2>
+          <h2 className="text-xl font-bold">{translations[selectedLanguage].projects}</h2>
           <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2">
-            {RESUME_DATA.projects.map((project) => {
+            {(selectedLanguage === 'en' ? RESUME_DATA.projects : RESUME_DATA.translation.projects).map((project) => {
               return (
                 <ProjectCard
                   key={project.title}
@@ -186,7 +225,7 @@ export default function Page() {
         </Section>
 
         <Section>
-          <h2 className="text-xl font-bold">Interests</h2>
+          <h2 className="text-xl font-bold">{translations[selectedLanguage].interests}</h2>
           <div className="flex flex-wrap gap-1">
             {RESUME_DATA.interests.map((interest) => {
               return <Badge key={interest}>{interest}</Badge>;
@@ -199,13 +238,15 @@ export default function Page() {
         links={[
           {
             url: RESUME_DATA.personalWebsiteUrl,
-            title: "Personal Website",
+            title: translations[selectedLanguage].personalWebsite,
           },
           ...RESUME_DATA.contact.social.map((socialMediaLink) => ({
             url: socialMediaLink.url,
             title: socialMediaLink.name,
-          })),
+          }))
         ]}
+        onChangeLanguage={() => setSelectedLanguage(selectedLanguage === 'en' ? 'de' : 'en')}
+        translations={translations[selectedLanguage]}
       />
     </main>
   );

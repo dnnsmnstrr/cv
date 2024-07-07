@@ -143,4 +143,81 @@ export const RESUME_DATA = {
     "Virtual Reality",
     "Personal Knowledge Management (Zettelkasten)"
   ],
+  translation: {
+    about: "Entwickler und 'Maker'",
+    summary: `Als Full-Stack Entwickler habe ich bereits an der vollen Bandbreite gearbeitet, von mobilen Apps zu Webanwendungen und Backend-Services.
+Seit meiner Teilnahme an der Apple Developer Academy in Neapel konnte ich über 5 Jahre Erfahrung sammeln. Dabei erstellte ich platformübergreifende und webbasierte Applikationen für Kunden aus verschiedenen Branchen.`,
+    education: [
+      {
+        school: "FES Wiesbaden",
+        degree: "Ausbildung zum 'Fachinformatiker für Anwendungsentwicklung'",
+        start: "2019",
+        end: "2022",
+      },
+      {
+        school: "Apple Developer Academy",
+        degree: "App-Entwicklung mit Swift",
+        start: "2017",
+        end: "2018",
+      },
+      {
+        school: "TU München & Darmstadt",
+        degree: "Ingenieurwissenschaften und Informatik",
+        start: "2016",
+        end: "2019",
+      },
+      {
+        school: "Deutsche Internationale Schule New York",
+        degree: "Abitur & Highschool Abschluss",
+        start: "2012",
+        end: "2015",
+      },
+    ],
+    work: [
+      {
+        company: "hpm",
+        link: "https://hpm.agency",
+        badges: ["Remote"],
+        title: "Softwareentwickler",
+        logo: HpmLogo,
+        start: "2019",
+        end: "2024",
+        description:
+          "Arbeit an zahllosen Kundenprojekten, unter anderem mobile Apps und Webanwendungen mit React (Native) und SvelteKit, sowie Backendentwicklung in Node.js mit Actionhero",
+      },
+    ],
+    interests: [
+      "Musik",
+      "3d-Druck",
+      "Gaming",
+      "Raspberry Pi",
+      "Smart-home",
+      "Virtual Reality",
+      "Wissensmanagement (Zettelkasten)"
+    ],
+    projects: [
+      {
+        title: "TESORA",
+        techStack: [
+          "JavaScript",
+          "React Native",
+        ],
+        description: "Platformübergreifende React-Native-App entwickelt von hpm.",
+        link: {
+          label: "tesora.app",
+          href: "https://tesora.app/",
+        },
+      },
+      {
+        title: "Raycast BetterTouchTool",
+        techStack: ["Side Project", "Raycast Extension"],
+        description:
+          "Open-source Erweiterung für die macOS-Anwendung 'Raycast', mit der sich die BetterTouchTool-Applikation steuern lässt",
+        link: {
+          label: "BTT im Raycast Store",
+          href: "https://www.raycast.com/dnnsmnstrr/bettertouchtool",
+        },
+      },
+    ]
+  }
 } as const;
