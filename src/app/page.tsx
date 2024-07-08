@@ -201,7 +201,7 @@ export default function Page() {
         <Section>
           <h2 className="text-xl font-bold">{translations[selectedLanguage].skills}</h2>
           <div className="flex flex-wrap gap-1">
-            {(selectedLanguage === 'en' ? RESUME_DATA.skills : RESUME_DATA.translation.skills || RESUME_DATA.skills).map((skill) => {
+            {RESUME_DATA.skills.map((skill) => {
               return <Badge key={skill}>{skill}</Badge>;
             })}
           </div>
