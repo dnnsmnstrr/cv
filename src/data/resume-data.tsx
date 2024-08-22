@@ -64,23 +64,31 @@ export const RESUME_DATA = {
     {
       school: "FES Wiesbaden",
       degree: "Apprenticeship 'Fachinformatiker für Anwendungsentwicklung'",
+      badges: [],
+      link: "",
       start: "2019",
       end: "2022",
     },
     {
       school: "Apple Developer Academy",
+      badges: ["Naples"],
+      link: "https://www.developeracademy.unina.it/en/about/",
       degree: "iOS development with Swift",
       start: "2017",
       end: "2018",
     },
     {
       school: "TU Munich & Darmstadt",
+      badges: [],
+      link: "",
       degree: "Engineering & Computer Science",
       start: "2016",
       end: "2019",
     },
     {
       school: "German International School New York",
+      badges: [],
+      link: "",
       degree: "Abitur & Highschool Diploma",
       start: "2012",
       end: "2015",
@@ -144,30 +152,39 @@ export const RESUME_DATA = {
     "Personal Knowledge Management (Zettelkasten)"
   ],
   translation: {
+    language: "Deutsch",
     about: "Entwickler und 'Maker'",
     summary: `Als Full-Stack Entwickler habe ich bereits an der vollen Bandbreite gearbeitet, von mobilen Apps zu Webanwendungen und Backend-Services.
 Seit meiner Teilnahme an der Apple Developer Academy in Neapel konnte ich über 5 Jahre Erfahrung sammeln. Dabei erstellte ich platformübergreifende und webbasierte Applikationen für Kunden aus verschiedenen Branchen.`,
     education: [
       {
         school: "FES Wiesbaden",
+        badges: [],
+        link: "",
         degree: "Ausbildung zum 'Fachinformatiker für Anwendungsentwicklung'",
         start: "2019",
         end: "2022",
       },
       {
         school: "Apple Developer Academy",
+        badges: ["Neapel"],
+        link: "https://www.developeracademy.unina.it/en/about/",
         degree: "App-Entwicklung mit Swift",
         start: "2017",
         end: "2018",
       },
       {
         school: "TU München & Darmstadt",
+        badges: [],
+        link: "",
         degree: "Ingenieurwissenschaften und Informatik",
         start: "2016",
         end: "2019",
       },
       {
         school: "Deutsche Internationale Schule New York",
+        badges: [],
+        link: "https://www.gisny.org/",
         degree: "Abitur & Highschool Abschluss",
         start: "2012",
         end: "2015",
@@ -212,7 +229,7 @@ Seit meiner Teilnahme an der Apple Developer Academy in Neapel konnte ich über 
         title: "Raycast BetterTouchTool",
         techStack: ["Side Project", "Raycast Extension"],
         description:
-          "Open-source Erweiterung für die macOS-Anwendung 'Raycast', mit der sich die BetterTouchTool-Applikation steuern lässt",
+          "Open-source Erweiterung für die macOS-Anwendung 'Raycast', um die Software BetterTouchTool zu steuern",
         link: {
           label: "BTT im Raycast Store",
           href: "https://www.raycast.com/dnnsmnstrr/bettertouchtool",

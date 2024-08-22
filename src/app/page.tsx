@@ -9,12 +9,7 @@ import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
-import { useState } from "react";
-
-// export const metadata: Metadata = {
-//   title: `${RESUME_DATA.name} | ${RESUME_DATA.about}`,
-//   description: RESUME_DATA.summary,
-// };
+import { useEffect, useState } from "react";
 
 const translations = {
   de: {
@@ -54,6 +49,25 @@ const translations = {
 
 export default function Page() {
   const [selectedLanguage, setSelectedLanguage] = useState<keyof typeof translations>('en')
+
+  useEffect(() => {
+    // Function to update the hash
+    const handleHashChange = () => {
+      setSelectedLanguage(window.location.hash === '#de' ? 'de' : 'en');
+    };
+
+    // Set the initial hash
+    handleHashChange();
+
+    // Add an event listener to detect changes in the hash
+    window.addEventListener('hashchange', handleHashChange);
+
+    // Cleanup function to remove the event listener
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []); // Empty dependency array ensures this runs only on mount and unmount
+
   return (
     <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
       <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
@@ -185,8 +199,23 @@ export default function Page() {
               <Card key={education.school}>
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
-                    <h3 className="font-semibold leading-none">
-                      {education.school}
+                    <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
+                      {education.link ? (
+                        <a className="hover:underline" href={education.link}>
+                          {education.school}
+                        </a>
+                      ) : education.school}
+                      <span className="inline-flex gap-x-1">
+                        {education?.badges.map((badge) => (
+                          <Badge
+                            variant="secondary"
+                            className="align-middle text-xs"
+                            key={badge}
+                          >
+                            {badge}
+                          </Badge>
+                        ))}
+                      </span>
                     </h3>
                     <div className="text-sm tabular-nums text-gray-500">
                       {education.start} - {education.end}
@@ -209,7 +238,7 @@ export default function Page() {
 
         <Section className="print-force-new-page scroll-mb-16">
           <h2 className="text-xl font-bold">{translations[selectedLanguage].projects}</h2>
-          <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2">
+          <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-2 print:gap-2 md:grid-cols-2">
             {(selectedLanguage === 'en' ? RESUME_DATA.projects : RESUME_DATA.translation.projects).map((project) => {
               return (
                 <ProjectCard
