@@ -115,6 +115,8 @@ export const RESUME_DATA = {
     "Node.js",
     "Swift",
     "Docker",
+    "Vitest",
+    "UML"
   ],
   projects: [
     {

@@ -16,9 +16,13 @@ const translations = {
     about: 'Über mich',
     actions: 'Aktionen',
     changeLanguage: 'Sprache wechseln (English Language)',
+    contact: 'Kontakt',
     education: 'Bildung',
+    email: 'E-Mail',
     from: 'aus',
+    homepage: 'Homepage',
     interests: 'Interessen',
+    language: 'DE',
     noResults: 'Keine Ergebnisse',
     openMenu: 'um das Menü zu öffnen',
     personalWebsite: 'Persönliche Webseite',
@@ -33,11 +37,15 @@ const translations = {
     about: 'About',
     actions: 'Actions',
     changeLanguage: 'Change Language (Deutsche Sprache)',
+    contact: 'Contact',
     education: 'Education',
+    email: 'Email',
     from: 'from',
+    homepage: 'Homepage',
     interests: 'Interests',
+    language: 'EN',
     noResults: 'No results found.',
-    personalWebsite: 'Personal Website',
+    personalWebsite: 'Website',
     placeholder: 'Type a command or search...',
     press: "Press",
     print: 'Print',
@@ -266,15 +274,23 @@ export default function Page() {
       <CommandMenu
         links={[
           {
+            url: 'mailto:' + RESUME_DATA.contact.email,
+            title: translations[selectedLanguage].contact,
+          },
+          {
             url: RESUME_DATA.personalWebsiteUrl,
-            title: translations[selectedLanguage].personalWebsite,
+            title: translations[selectedLanguage].homepage,
           },
           ...RESUME_DATA.contact.social.map((socialMediaLink) => ({
             url: socialMediaLink.url,
             title: socialMediaLink.name,
-          }))
+          })),
+          {
+            url: 'mailto:' + RESUME_DATA.contact.email,
+            title: translations[selectedLanguage].email,
+          },
         ]}
-        onChangeLanguage={() => setSelectedLanguage(selectedLanguage === 'en' ? 'de' : 'en')}
+        onChangeLanguage={() => window.location.assign(selectedLanguage === 'en' ? '/#de' : '/#en')}
         translations={translations[selectedLanguage]}
       />
     </main>

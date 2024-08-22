@@ -47,6 +47,11 @@ export const CommandMenu = ({ links, onChangeLanguage, translations }: Props) =>
         </button>{" "}
         {translations.openMenu || 'to open the command menu'}
       </p>
+      <button onClick={onChangeLanguage} className="fixed bottom-1 right-2 flex rounded-full shadow-2xl print:hidden">
+        <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+          {translations.language}
+        </kbd>    
+      </button>
       <Button
         onClick={() => setOpen((open) => !open)}
         variant="outline"
