@@ -269,8 +269,22 @@ export default function Page() {
             })}
           </div>
         </Section>
+
+        <Section className="hidden print:block mt-8 border-t pt-6">
+          <div className="flex flex-col justify-start items-start gap-x-4">
+            <div className="text-base">
+              {RESUME_DATA.location}, {new Date().toLocaleDateString(selectedLanguage === 'en' ? 'en-US' : 'de-DE')}
+            </div>
+            <div className="flex flex-col pt-2">
+              <div className="text-sm mt-8 w-40 border-t border-gray-700">
+                {RESUME_DATA.name}
+              </div>
+            </div>
+          </div>
+        </Section>
       </section>
 
+      
       <CommandMenu
         links={[
           {
@@ -292,7 +306,7 @@ export default function Page() {
         ]}
         onChangeLanguage={() => window.location.assign(selectedLanguage === 'en' ? '/#de' : '/#en')}
         translations={translations[selectedLanguage]}
-      />
+      />    
     </main>
   );
 }
