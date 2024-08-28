@@ -69,7 +69,10 @@ export const CommandMenu = ({ links, onChangeLanguage, translations }: Props) =>
               <span>{translations.print || 'Print'}</span>
             </CommandItem>
             <CommandItem
-              onSelect={onChangeLanguage}
+              onSelect={() => {
+                onChangeLanguage()
+                setOpen(false)
+              }}
             >
               <span>{translations.changeLanguage || 'Change Language'}</span>
             </CommandItem>

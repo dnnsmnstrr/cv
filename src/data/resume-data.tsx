@@ -144,7 +144,7 @@ export const RESUME_DATA = {
     "Personal Knowledge Management (Zettelkasten)"
   ],
   translation: {
-    about: "Entwickler und 'Maker'",
+    about: "Entwickler und Maker",
     summary: `Als Full-Stack Entwickler habe ich bereits an der vollen Bandbreite gearbeitet, von mobilen Apps zu Webanwendungen und Backend-Services.
 Seit meiner Teilnahme an der Apple Developer Academy in Neapel konnte ich über 5 Jahre Erfahrung sammeln. Dabei erstellte ich platformübergreifende und webbasierte Applikationen für Kunden aus verschiedenen Branchen.`,
     education: [
