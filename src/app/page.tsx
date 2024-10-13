@@ -168,7 +168,7 @@ export default function Page() {
                         {work.name}
                       </a>
 
-                      <span className="inline-flex gap-x-1">
+                      <div className="invisible sm:visible inline-flex gap-x-1">
                         {(getTranslatedKey('badges', selectedLanguage, work) as string[] || []).map((badge: string) => (
                           <Badge
                             variant="secondary"
@@ -178,9 +178,9 @@ export default function Page() {
                             {badge}
                           </Badge>
                         ))}
-                      </span>
+                      </div>
                     </h3>
-                    <div className="text-sm tabular-nums text-gray-500" title={`${work.startDate} - ${work.endDate}`}>
+                    <div className="text-sm text-right min-w-24 tabular-nums text-gray-500" title={`${work.startDate}${work.endDate ? ' - ' + work.endDate : ''}`}>
                       {!work.endDate ? translations[selectedLanguage].since + ' ' : ''}{formattedStartDate} {work.endDate && work.startDate.split('-')[0] !== work.endDate.split('-')[0] ? ' - ' + formattedEndDate : ''}
                     </div>
                   </div>
@@ -227,7 +227,7 @@ export default function Page() {
                         ))}
                       </span>
                     </h3>
-                    <div className="text-sm tabular-nums text-gray-500" title={`${education.startDate} - ${education.endDate}`}>
+                    <div className="text-sm text-right min-w-24 tabular-nums text-gray-500" title={`${education.startDate}${education.endDate ? ' - ' + education.endDate : ''}`}>
                       {formattedStartDate} {education.endDate && education.startDate.split('-')[0] !== education.endDate.split('-')[0] ? ' - ' + formattedEndDate : ''}
                     </div>
                   </div>
