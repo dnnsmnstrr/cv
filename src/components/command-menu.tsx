@@ -13,12 +13,13 @@ import {
 } from "@/components/ui/command";
 import { Button } from "./ui/button";
 import { CommandIcon } from "lucide-react";
-
+import type { LocalizedStrings } from "@/lib/i18n"
 interface Props {
-  links: { url: string; title: string }[];
+  links: { url: string; title: string | string[] }[];
   onChangeLanguage: () => void,
-  translations: Record<string, string>
+  translations: LocalizedStrings
 }
+
 const TRIGGER_KEY = "k"
 
 export const CommandMenu = ({ links, onChangeLanguage, translations }: Props) => {
@@ -61,7 +62,7 @@ export const CommandMenu = ({ links, onChangeLanguage, translations }: Props) =>
         <CommandIcon className="my-6 h-6 w-6" />
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder={translations.placeholder || "Type a command or search..."} />
+        <CommandInput placeholder={String(translations.placeholder) || "Type a command or search..."} />
         <CommandList>
           <CommandEmpty>{translations.noResults || 'No results found.'}</CommandEmpty>
           <CommandGroup heading={translations.actions || "Actions"}>

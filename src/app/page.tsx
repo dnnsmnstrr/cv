@@ -3,177 +3,171 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CommandMenu } from "@/components/command-menu";
-import { Metadata } from "next";
 import { Section } from "@/components/ui/section";
 import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
 import { useEffect, useState } from "react";
-
-const translations = {
-  de: {
-    about: 'Über mich',
-    actions: 'Aktionen',
-    changeLanguage: 'Sprache wechseln (English Language)',
-    contact: 'Kontakt',
-    education: 'Bildung',
-    email: 'E-Mail',
-    from: 'aus',
-    homepage: 'Homepage',
-    interests: 'Interessen',
-    language: 'DE',
-    noResults: 'Keine Ergebnisse',
-    openMenu: 'um das Menü zu öffnen',
-    personalWebsite: 'Persönliche Webseite',
-    placeholder: 'Befehl eingeben oder suchen...',
-    press: "Drücke",
-    print: 'Drucken',
-    projects: 'Projekte',
-    skills: 'Fähigkeiten',
-    workExperience: 'Arbeitserfahrung'
-  },
-  en: {
-    about: 'About',
-    actions: 'Actions',
-    changeLanguage: 'Change Language (Deutsche Sprache)',
-    contact: 'Contact',
-    education: 'Education',
-    email: 'Email',
-    from: 'from',
-    homepage: 'Homepage',
-    interests: 'Interests',
-    language: 'EN',
-    noResults: 'No results found.',
-    personalWebsite: 'Website',
-    placeholder: 'Type a command or search...',
-    press: "Press",
-    print: 'Print',
-    projects: 'Projects',
-    skills: 'Skills',
-    workExperience: 'Work Experience'
-  }
-} as const
-
+import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
+import { getInitials, getMonthName, getTranslatedKey } from "@/lib/utils";
+import { SUPPORTED_LANGUAGES, translations } from "@/lib/i18n";
+import { JSONResume } from "@/lib/types";
+import jsonResume  from '@/data/resume.json'
 export default function Page() {
-  const [selectedLanguage, setSelectedLanguage] = useState<keyof typeof translations>('en')
+  const RESUME_DATA: JSONResume = jsonResume
 
+  const [selectedLanguage, setSelectedLanguage] = useState<keyof typeof translations>(SUPPORTED_LANGUAGES[0])
   useEffect(() => {
-    // Function to update the hash
+    // Enable linking to specific language hash
     const handleHashChange = () => {
-      setSelectedLanguage(window.location.hash === '#de' ? 'de' : 'en');
+      const hashLanguage = window.location.hash.replace('#', '') as typeof SUPPORTED_LANGUAGES[number]
+      const initialLanguage = SUPPORTED_LANGUAGES.includes(hashLanguage) ? hashLanguage : SUPPORTED_LANGUAGES[0]
+      setSelectedLanguage(initialLanguage);
     };
-
-    // Set the initial hash
     handleHashChange();
-
-    // Add an event listener to detect changes in the hash
     window.addEventListener('hashchange', handleHashChange);
 
-    // Cleanup function to remove the event listener
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
     };
   }, []); // Empty dependency array ensures this runs only on mount and unmount
 
+  const socialIcons = {
+    LinkedIn: <LinkedInIcon className="h-4 w-4" />,
+    GitHub: <GitHubIcon className="h-4 w-4" />,
+    X: <XIcon className="h-4 w-4" />
+  }
+  function getSocialIcon(network: keyof typeof socialIcons) {
+    if (Object.keys(socialIcons).includes(network)) {
+      return socialIcons[network]
+    }
+    return <GlobeIcon className="h-4 w-4" />
+  }
+
+  const translatedMonths = [...(translations[selectedLanguage].months)]
+  const links = [
+    {
+      url: 'mailto:' + RESUME_DATA.basics.email,
+      title: translations[selectedLanguage].email,
+    },
+    ...(RESUME_DATA.basics.profiles || []).map((socialMediaProfile) => ({
+      url: socialMediaProfile.url,
+      title: String(socialMediaProfile.network),
+    })),
+  ]
+  if (RESUME_DATA.basics.url) {
+    links.unshift({
+      url: RESUME_DATA.basics.url,
+      title: String(translations[selectedLanguage].homepage),
+    })
+  }
   return (
     <main className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-12 md:p-16">
       <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex-1 space-y-1.5">
-            <h1 className="text-2xl font-bold">{RESUME_DATA.name}</h1>
+            <h1 className="text-2xl font-bold">{RESUME_DATA.basics.name}</h1>
             <p className="max-w-md text-pretty font-mono text-sm text-muted-foreground">
-              {(selectedLanguage === 'en' ? RESUME_DATA.about : RESUME_DATA.translation.about)} {translations[selectedLanguage].from} {RESUME_DATA.location}
+              {String(getTranslatedKey('label', selectedLanguage, RESUME_DATA.basics))} {RESUME_DATA.basics.location ? translations[selectedLanguage].from + ' ' + getTranslatedKey('city', selectedLanguage, RESUME_DATA.basics.location) : ''}
             </p>
             
-            <p className="max-w-md items-center text-pretty font-mono text-xs text-muted-foreground">
-              <a
-                className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
-                href={RESUME_DATA.personalWebsiteUrl}
-                target="_blank"
-              >
-                <GlobeIcon className="h-3 w-3" />
-                {RESUME_DATA.personalWebsiteUrl.replace('https://', '')}
-              </a>
-            </p>
+            {RESUME_DATA.basics.url ? (
+              <p className="max-w-md items-center text-pretty font-mono text-xs text-muted-foreground">
+                <a
+                  className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
+                  href={RESUME_DATA.basics.url}
+                  target="_blank"
+                >
+                  <GlobeIcon className="h-3 w-3" />
+                  {RESUME_DATA.basics.url.replace('https://', '')}
+                </a>
+              </p>
+            ) : null}
             <div className="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden">
-              {RESUME_DATA.contact.email ? (
+              {RESUME_DATA.basics.email ? (
                 <Button
                   className="h-8 w-8"
                   variant="outline"
                   size="icon"
                   asChild
                 >
-                  <a href={`mailto:${RESUME_DATA.contact.email}`}>
+                  <a href={`mailto:${RESUME_DATA.basics.email}`}>
                     <MailIcon className="h-4 w-4" />
                   </a>
                 </Button>
               ) : null}
-              {RESUME_DATA.contact.tel ? (
+              {RESUME_DATA.basics.phone ? (
                 <Button
                   className="h-8 w-8"
                   variant="outline"
                   size="icon"
                   asChild
                 >
-                  <a href={`tel:${RESUME_DATA.contact.tel}`}>
+                  <a href={`tel:${RESUME_DATA.basics.phone}`}>
                     <PhoneIcon className="h-4 w-4" />
                   </a>
                 </Button>
               ) : null}
-              {RESUME_DATA.contact.social.map((social) => (
+              {(RESUME_DATA.basics.profiles || []).map((social) => (
                 <Button
-                  key={social.name}
+                  key={social.network}
                   className="h-8 w-8"
                   variant="outline"
                   size="icon"
                   asChild
                 >
                   <a href={social.url}>
-                    <social.icon className="h-4 w-4" />
+                    {getSocialIcon(social.network as keyof typeof socialIcons)}
                   </a>
                 </Button>
               ))}
             </div>
             <div className="hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex">
-              {RESUME_DATA.contact.email ? (
-                <a href={`mailto:${RESUME_DATA.contact.email}`}>
-                  <span className="underline">{RESUME_DATA.contact.email}</span>
+              {RESUME_DATA.basics.email ? (
+                <a href={`mailto:${RESUME_DATA.basics.email}`}>
+                  <span className="underline">{RESUME_DATA.basics.email}</span>
                 </a>
               ) : null}
-              {RESUME_DATA.contact.tel ? (
-                <a href={`tel:${RESUME_DATA.contact.tel}`}>
-                  <span className="underline">{RESUME_DATA.contact.tel}</span>
+              {RESUME_DATA.basics.phone ? (
+                <a href={`tel:${RESUME_DATA.basics.phone}`}>
+                  <span className="underline">{RESUME_DATA.basics.phone}</span>
                 </a>
               ) : null}
             </div>
           </div>
 
           <Avatar className="h-28 w-28">
-            <AvatarImage alt={RESUME_DATA.name} src={RESUME_DATA.avatarUrl} />
-            <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
+            <AvatarImage alt={RESUME_DATA.basics.name} src={RESUME_DATA.basics.image} />
+            <AvatarFallback>{String(RESUME_DATA.basics.initials) || getInitials(RESUME_DATA.basics.name)}</AvatarFallback>
           </Avatar>
         </div>
         <Section>
           <h2 className="text-xl font-bold">{translations[selectedLanguage].about}</h2>
           <p className="text-pretty font-mono text-sm text-muted-foreground">
-            {(selectedLanguage === 'en' ? RESUME_DATA.summary : RESUME_DATA.translation.summary)}
+          {getTranslatedKey('summary', selectedLanguage, RESUME_DATA.basics)}
           </p>
         </Section>
         <Section>
           <h2 className="text-xl font-bold">{translations[selectedLanguage].workExperience}</h2>
-          {(selectedLanguage === 'en' ? RESUME_DATA.work : RESUME_DATA.translation.work).map((work) => {
+          {(RESUME_DATA.work || []).map((work) => {
+            let formattedStartDate = work.startDate.split('-')[0]
+            const formattedEndDate = work.endDate ? work.endDate.split('-')[0] : ''
+            if (formattedStartDate === formattedEndDate && work.endDate) {
+              formattedStartDate = getMonthName(Number(work.startDate.split('-')[1]) - 1, translatedMonths) + '-' + getMonthName(Number(work.endDate.split('-')[1]) - 1, translatedMonths) + ' ' + work.startDate.split('-')[0]
+            } else if (!work.endDate) {
+              formattedStartDate = getMonthName(Number(work.startDate.split('-')[1]) - 1, translatedMonths) + ' ' + work.startDate.split('-')[0]
+            }
             return (
-              <Card key={work.company}>
+              <Card key={work.name}>
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
                     <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
-                      <a className="hover:underline" href={work.link}>
-                        {work.company}
+                      <a className="hover:underline" href={String(work.url)}>
+                        {work.name}
                       </a>
 
                       <span className="inline-flex gap-x-1">
-                        {work.badges.map((badge) => (
+                        {(getTranslatedKey('badges', selectedLanguage, work) as string[] || []).map((badge: string) => (
                           <Badge
                             variant="secondary"
                             className="align-middle text-xs"
@@ -184,17 +178,17 @@ export default function Page() {
                         ))}
                       </span>
                     </h3>
-                    <div className="text-sm tabular-nums text-gray-500">
-                      {work.start} - {work.end}
+                    <div className="text-sm tabular-nums text-gray-500" title={`${work.startDate} - ${work.endDate}`}>
+                      {!work.endDate ? translations[selectedLanguage].since + ' ' : ''}{formattedStartDate} {work.endDate && work.startDate.split('-')[0] !== work.endDate.split('-')[0] ? ' - ' + formattedEndDate : ''}
                     </div>
                   </div>
 
                   <h4 className="font-mono text-sm leading-none">
-                    {work.title}
+                    {work.position}
                   </h4>
                 </CardHeader>
                 <CardContent className="mt-2 text-xs">
-                  {work.description}
+                  {getTranslatedKey('summary', selectedLanguage, work)}
                 </CardContent>
               </Card>
             );
@@ -202,19 +196,25 @@ export default function Page() {
         </Section>
         <Section>
           <h2 className="text-xl font-bold">{translations[selectedLanguage].education}</h2>
-          {(selectedLanguage === 'en' ? RESUME_DATA.education : RESUME_DATA.translation.education).map((education) => {
+          {(RESUME_DATA.education || []).map((education) => {
+            let formattedStartDate = education.startDate.split('-')[0]
+            const formattedEndDate = education.endDate ? education.endDate.split('-')[0] : ''
+            if (formattedStartDate === formattedEndDate && education.endDate) {
+              formattedStartDate = getMonthName(Number(education.startDate.split('-')[1]) - 1, translatedMonths) + '-' + getMonthName(Number(education.endDate.split('-')[1]) - 1, translatedMonths) + ' ' + education.startDate.split('-')[0]
+            }
+            const name = getTranslatedKey('institution', selectedLanguage, education)
             return (
-              <Card key={education.school}>
+              <Card key={education.institution}>
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
                     <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
-                      {education.link ? (
-                        <a className="hover:underline" href={education.link}>
-                          {education.school}
+                      {education.url ? (
+                        <a className="hover:underline" href={String(education.url)}>
+                          {name}
                         </a>
-                      ) : education.school}
+                      ) : name}
                       <span className="inline-flex gap-x-1">
-                        {education?.badges.map((badge) => (
+                        {(education?.badges as string[] || []).map((badge: string) => (
                           <Badge
                             variant="secondary"
                             className="align-middle text-xs"
@@ -225,36 +225,48 @@ export default function Page() {
                         ))}
                       </span>
                     </h3>
-                    <div className="text-sm tabular-nums text-gray-500">
-                      {education.start} - {education.end}
+                    <div className="text-sm tabular-nums text-gray-500" title={`${education.startDate} - ${education.endDate}`}>
+                      {formattedStartDate} {education.endDate && education.startDate.split('-')[0] !== education.endDate.split('-')[0] ? ' - ' + formattedEndDate : ''}
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="mt-2">{education.degree}</CardContent>
+                <CardContent className="mt-2">{getTranslatedKey('area', selectedLanguage, education)}</CardContent>
               </Card>
             );
           })}
         </Section>
-        <Section>
-          <h2 className="text-xl font-bold">{translations[selectedLanguage].skills}</h2>
+        <div className="hidden print:flex w-full justify-end">
+          <div>1</div>
+        </div>
+        <Section className="print-force-new-page">
+          <div className="hidden print:flex w-full justify-between">
+            <div>CV - {RESUME_DATA.basics.name}</div>
+          </div>
+
+          <h2 className="text-xl font-bold print:mt-8">{translations[selectedLanguage].skills}</h2>
           <div className="flex flex-wrap gap-1">
-            {RESUME_DATA.skills.map((skill) => {
-              return <Badge key={skill}>{skill}</Badge>;
+            {(RESUME_DATA.skills || []).map((skill) => {
+              const skills = skill.keywords?.join(', ')
+              return <Badge key={skill.name} title={skills}>{getTranslatedKey('name', selectedLanguage, skill)}<span className="hidden print:block ml-2">({skills})</span></Badge>;
             })}
           </div>
         </Section>
 
-        <Section className="print-force-new-page scroll-mb-16">
+        <Section className="scroll-mb-16">
           <h2 className="text-xl font-bold">{translations[selectedLanguage].projects}</h2>
           <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-2 print:gap-2 md:grid-cols-2">
-            {(selectedLanguage === 'en' ? RESUME_DATA.projects : RESUME_DATA.translation.projects).map((project) => {
+            {(RESUME_DATA.projects || []).map((project) => {
+              const title = getTranslatedKey('name', selectedLanguage, project)
+              const description = getTranslatedKey('description', selectedLanguage, project)
+              const keywords = getTranslatedKey('keywords', selectedLanguage, project)
+              const link = getTranslatedKey('url', selectedLanguage, project)
               return (
                 <ProjectCard
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  tags={project.techStack}
-                  link={"link" in project ? project.link.href : undefined}
+                  key={project.name}
+                  title={title}
+                  description={description}
+                  tags={keywords}
+                  link={link ? link : undefined}
                 />
               );
             })}
@@ -264,16 +276,18 @@ export default function Page() {
         <Section>
           <h2 className="text-xl font-bold">{translations[selectedLanguage].interests}</h2>
           <div className="flex flex-wrap gap-1">
-            {RESUME_DATA.interests.map((interest) => {
-              return <Badge key={interest}>{interest}</Badge>;
+            {(RESUME_DATA.interests || []).map((interest) => {
+              const { name, keywords } = interest
+              const interests = keywords?.join(', ')
+              return <Badge key={name} title={interests}>{interest['name_' + selectedLanguage] || name}<span className="hidden print:block ml-2">({interests})</span></Badge>;
             })}
           </div>
         </Section>
 
-        <Section className="hidden print:block mt-8 border-t pt-6">
+        <Section className="hidden print:flex flex-col justify-between h-80 mt-8 border-t pt-6 ">
           <div className="flex flex-col justify-start items-start gap-x-4">
             <div className="text-base">
-              {RESUME_DATA.location}, {new Date().toLocaleDateString(selectedLanguage === 'en' ? 'en-US' : 'de-DE')}
+              {RESUME_DATA.basics.location?.city || translations[selectedLanguage].city}, {new Date().toLocaleDateString(selectedLanguage === 'en' ? 'en-US' : 'de-DE')}
             </div>
             <div className="flex flex-col pt-2">
               <div className="text-sm mt-8 w-40 border-t border-gray-700">
@@ -281,29 +295,14 @@ export default function Page() {
               </div>
             </div>
           </div>
+          <div className="hidden print:flex w-full h-fit justify-end items-end">
+            <span>2</span>
+          </div>
         </Section>
       </section>
 
-      
       <CommandMenu
-        links={[
-          {
-            url: 'mailto:' + RESUME_DATA.contact.email,
-            title: translations[selectedLanguage].contact,
-          },
-          {
-            url: RESUME_DATA.personalWebsiteUrl,
-            title: translations[selectedLanguage].homepage,
-          },
-          ...RESUME_DATA.contact.social.map((socialMediaLink) => ({
-            url: socialMediaLink.url,
-            title: socialMediaLink.name,
-          })),
-          {
-            url: 'mailto:' + RESUME_DATA.contact.email,
-            title: translations[selectedLanguage].email,
-          },
-        ]}
+        links={links}
         onChangeLanguage={() => window.location.assign(selectedLanguage === 'en' ? '/#de' : '/#en')}
         translations={translations[selectedLanguage]}
       />    

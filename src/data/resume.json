@@ -1,0 +1,302 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": { 
+    "name": "Dennis Muensterer",
+    "label": "Developer & Maker",
+    "image": "https://avatars.githubusercontent.com/u/3686989?v=4",
+    "email": "dennismuensterer@gmail.com",
+    "phone": "+4915730967248",
+    "url": "https://muensterer.tech",
+    "summary": "As a full stack developer, I have worked on a multitude of projects, from mobile apps to websites. \nSince starting my dev journey at the Apple Developer Academy in Naples, I have garnered over 5 years of work experience, crafting cross-platform and web-based experiences for clients from a wide range of industries.",
+    "summary_de": "Als Full-Stack Entwickler habe ich bereits an der vollen Bandbreite gearbeitet, von mobilen Apps zu Webanwendungen und Backend-Services. \nSeit meiner Teilnahme an der Apple Developer Academy in Neapel konnte ich über 5 Jahre Erfahrung sammeln. Dabei erstellte ich platformübergreifende und webbasierte Applikationen für Kunden aus verschiedenen Branchen.",
+    "location": {
+      "address": "",
+      "postalCode": "55118",
+      "city": "Mainz",
+      "countryCode": "DE"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "dennismuensterer",
+        "url": "https://www.linkedin.com/in/dennismuensterer"
+      },
+      {
+        "network": "GitHub",
+        "username": "dnnsmnstrr",
+        "url": "https://www.github.com/dnnsmnstrr"
+      },
+      {
+        "network": "X",
+        "username": "dnnmsnstrr",
+        "url": "https://x.com/dnnsmnstrr"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "3st Kommunikation GmbH",
+      "location": "Mainz, DE",
+      "description": "digital, branding and content",
+      "position": "Junior Developer",
+      "url": "https://www.3st.de/en",
+      "url_de": "https://www.3st.de",
+      "startDate": "2024-12-01",
+      "badges": ["Agency"],
+      "badges_de": ["Agentur"]
+    },
+    {
+      "name": "hpm GmbH",
+      "location": "Wiesbaden-Erbenheim, DE",
+      "description": "Digital Excellence",
+      "position": "Developer",
+      "url": "https://hpm.agency",
+      "startDate": "2019-05-01",
+      "endDate": "2024-09-30",
+      "summary": "Worked on various projects for industrial clients, including mobile and web applications with React (Native) and SvelteKit, as well as backend development in Node.js with Actionhero",
+      "summary_de": "Arbeit an zahllosen Kundenprojekten, unter anderem mobile Apps und Webanwendungen mit React (Native) und SvelteKit, sowie Backendentwicklung in Node.js mit Actionhero",
+      "highlights": [
+        "Created an internal wiki-website as a final project of my apprenticeship",
+        "Worked on projects such as the TESORA mobile-app and the VOTEOS blockchain-voting software"
+      ],
+      "badges": ["Hybrid"]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Behindertenseelsorge Mainz",
+      "position": "FSJ",
+      "url": "https://bistummainz.de/seelsorge/behindertenseelsorge/",
+      "startDate": "2015-09-01",
+      "endDate": "2016-03-31",
+      "summary": "Helping people with disabilities",
+      "summary_de": "Freizeiten für Menschen mit Behinderung",
+      "highlights": [
+        "Volunteered on trips for groups of children, teenagers and adults with disabilities",
+        "Destinations included Rome, Italy and De Rijp, Netherlands"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Digital Product School",
+      "url": "https://www.digitalproductschool.io/",
+      "area": "Software Engineer",
+      "studyType": "training program",
+      "startDate": "2024-09-06",
+      "endDate": "2024-11-30",
+      "courses": [
+        "User-centered Design",
+        "Agile Methodologies",
+        "Lean Startup"
+      ]
+    },
+    {
+      "institution": "FES Wiesbaden",
+      "institution_de": "Friedrich-Ebert-Schule Wiesbaden",
+      "url": "https://fes-wiesbaden.de/",
+      "area": "IT Specialist - Application Development",
+      "area_de": "Fachinformatik - Anwendungsentwicklung",
+      "studyType": "Berufsschule",
+      "startDate": "2019-08-15",
+      "endDate": "2022-01-15"
+    },
+    {
+      "institution": "TU Darmstadt (prev. Munich)",
+      "institution_de": "TU Darmstadt (vorher München)",
+      "url": "https://www.tu-darmstadt.de/studieren/studieninteressierte/studienangebot_studiengaenge/studiengang_177792.de.jsp",
+      "area": "Computer Science",
+      "area_de": "Informatik",
+      "studyType": "Bachelor (uncompleted)",
+      "startDate": "2018-10-15",
+      "endDate": "2019-05-01"
+    },
+    {
+      "institution": "Apple Developer Academy - Naples",
+      "institution_de": "Apple Developer Academy - Neapel",
+      "url": "https://www.developeracademy.unina.it/en/",
+      "area": "iOS Development",
+      "area_de": "iOS Development",
+      "studyType": "Challenge Based Learning",
+      "startDate": "2017-10-01",
+      "endDate": "2018-06-30",
+      "courses": [
+        "Challenges - app projects developed in small teams",
+        "Design Thinking",
+        "Business modeling and planning"
+      ]
+    },
+    {
+      "institution": "Technical University Munich",
+      "institution_de": "Technische Universität München",
+      "url": "https://www.tum.de/",
+      "area": "Engineering Sciences",
+      "studyType": "University",
+      "startDate": "2016-10-15",
+      "endDate": "2017-08-01"
+    },
+    {
+      "institution": "German International School New York",
+      "institution_de": "Deutsche Internationale Schule New York",
+      "url": "https://www.gisny.org/",
+      "startDate": "2012-08-16",
+      "endDate": "2015-05-30",
+      "area": "German Abitur & Highschool Diploma",
+      "area_de": "Abitur & Highschool Abschluss",
+      "score": "1.9",
+      "studyType": "Gymnasium"
+    }
+  ],
+  "awards": [
+    {
+      "title": "Medienberg Hack 2019 - Smart Media",
+      "date": "2019-11-28",
+      "awarder": "VRM",
+      "summary": "Hackathon Project. My team created an Alexa Skill that employed Text-to-Speech to guide through a text based RPG using the Twine-format."
+    },
+    {
+      "title": "IT-Talents Scholarship",
+      "date": "2022-01-04",
+      "awarder": "IAV",
+      "summary": "During my apprenticeship, I was awarded a year-long monthly stipend. An [interview](https://it-talents.de/partnerunternehmen/dennis-erhaelt-ein-it-stipendium/) was published."
+    },
+    {
+      "title": "Circular Hackfest 2023 - Best Business Opportunity",
+      "url": "https://hackfest.tech",
+      "date": "2023-11-16",
+      "awarder": "Circular Republic",
+      "summary": "My team worked on a robot that can cook and slice kebab meat. I helped rewrite the Arduino code and built an app to remotely control the robot."
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Cisco CCNA - Routing and Switching",
+      "url": "https://www.cisco.com/site/us/en/learn/training-certifications/certifications/enterprise/ccna/index.html",
+      "date": "2018-06-22"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Web Development",
+      "level": "Advanced",
+      "keywords": ["React", "Svelte", "Javascript", "node.js"]
+    },
+    {
+      "name": "App Development",
+      "level": "Intermediate",
+      "keywords": ["React Native", "iOS", "Swift", "Android", "Expo"]
+    },
+    {
+      "name": "Test Driven Development",
+      "level": "Intermediate",
+      "keywords": ["Jest", "Vitest"]
+    },
+    {
+      "name": "Technologies and Methodologies",
+      "name_de": "Technologien and Methoden",
+      "keywords": ["GitLab", "Docker", "UML", "Agile"]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "German",
+      "fluency": "Native speaker"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Music",
+      "name_de": "Musik",
+      "keywords": ["Piano", "Hip Hop"]
+    },
+    {
+      "name": "Making",
+      "keywords": ["3d Printing", "Raspberry Pi", "Arduino"]
+    },
+    {
+      "name": "Gaming",
+      "keywords": ["VR", "Indie", "Handheld"]
+    },
+    {
+      "name": "Smart Home",
+      "keywords": ["Home Assistant", "Zigbee"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Raycast BetterTouchTool Extension",
+      "description": "Run predefined actions and named triggers in BTT directly from Raycast",
+      "description_de": "Starte Aktionen in BetterTouchTool direkt über Raycast",
+      "highlights": [
+        "Over 1000 downloads in the Raycast Store",
+        "A feature was added to BTT specifically by my request to get named triggers via the scripting interface"
+      ],
+      "highlights_de": [
+        "Über 1000 Downloads im Raycast Store",
+        "Auf meine Nachfrage wurde BTT erweitert, um das Laden von 'named triggers' zu ermöglichen"
+      ],
+      "keywords": ["BetterTouchTool", "Raycast"],
+      "startDate": "2023-03-01",
+      "url": "https://www.raycast.com/dnnsmnstrr/bettertouchtool",
+      "roles": ["Developer"],
+      "type": "application"
+    },
+    {
+      "name": "TESORA",
+      "description": "Local-first mobile app to track valuable assets created by hpm.",
+      "description_de": "App zum Verwalten von Sachwerten und Sammlungen, entwickelt bei hpm.",
+      "highlights": [
+        "I was responsible for the development of the mobile app on iOS and Android with React Native"
+      ],
+      "highlights_de": [
+        "I was responsible for the development of the mobile app on iOS and Android with React Native"
+      ],
+      "keywords": ["Finances", "Cross-Platform"],
+      "keywords_de": ["Finanzen", "Plattformübergreifend"],
+      "url": "https://tesora.app/",
+      "roles": ["App Developer"],
+      "type": "application"
+    },
+    {
+      "name": "Redairect",
+      "description": "Custom redirects-API that allows defining aliases for links",
+      "highlights": ["Uses next.js for simple hosting & deployment on Vercel"],
+      "keywords": ["Vercel", "Javascript"],
+      "startDate": "2019-08-24",
+      "url": "https://redairect.com",
+      "roles": ["Developer"],
+      "type": "application"
+    },
+    {
+      "name": "Progressions",
+      "description": "App to manage a personal library of lyrics and chords",
+      "description_de": "Eine persönliche Sammlung von Akkorden und Songtexten als App",
+      "highlights": [
+        "Automatically detects songs with similar chord progressions",
+        "Transpose songs to match your vocal range",
+        "Keep track of how many times you played each song"
+      ],
+      "highlights_de": [
+        "Erkennt automatisch Lieder mit ähnlicher Akkordfolge",
+        "Transponiere Songs in deine Stimmlage",
+        "Führe Statistik wie oft du welches Lied gespielt hast"
+      ],
+      "keywords": ["Expo", "Music"],
+      "keywords_de": ["Expo", "Musik"],
+      "startDate": "2019-12-22",
+      "url": "https://progressions.live",
+      "roles": ["Developer", "Musician"],
+      "type": "application"
+    }
+  ],
+  "meta": {
+    "theme": "elegant",
+    "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/resume.json",
+    "version": "v1.0.0",
+    "lastModified": "2024-10-13T12:12:12"
+  }
+}
