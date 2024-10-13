@@ -44,7 +44,9 @@ export default function Page() {
     return <GlobeIcon className="h-4 w-4" />
   }
 
-  const translatedMonths = [...(translations[selectedLanguage].months)]
+  const months = translations[selectedLanguage].months;
+  const translatedMonths = Array.isArray(months) ? [...months] : [months];
+  
   const links = [
     {
       url: 'mailto:' + RESUME_DATA.basics.email,
