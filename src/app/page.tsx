@@ -159,13 +159,16 @@ export default function Page() {
             } else if (!work.endDate) {
               formattedStartDate = getMonthName(Number(work.startDate.split('-')[1]) - 1, translatedMonths) + ' ' + work.startDate.split('-')[0]
             }
+            const name = getTranslatedKey('name', selectedLanguage, work)
+            const url = getTranslatedKey('url', selectedLanguage, work)
+            const position = getTranslatedKey('position', selectedLanguage, work)
             return (
               <Card key={work.name}>
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
                     <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
-                      <a className="hover:underline" href={String(work.url)}>
-                        {work.name}
+                      <a className="hover:underline" href={url}>
+                        {name}
                       </a>
 
                       <div className="invisible sm:visible inline-flex gap-x-1">
@@ -186,7 +189,7 @@ export default function Page() {
                   </div>
 
                   <h4 className="font-mono text-sm leading-none">
-                    {work.position}
+                    {position}
                   </h4>
                 </CardHeader>
                 <CardContent className="mt-2 text-xs">
