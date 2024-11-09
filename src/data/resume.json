@@ -1,20 +1,34 @@
 {
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
-  "basics": { 
+  "basics": {
     "name": "Dennis Muensterer",
     "label": "Developer & Maker",
+    "pronouns": "He / Him",
     "image": "https://avatars.githubusercontent.com/u/3686989?v=4",
+    "picture": "https://avatars.githubusercontent.com/u/3686989?v=4",
+    "avatar": "https://avatars.githubusercontent.com/u/3686989?v=4",
     "email": "dennismuensterer@gmail.com",
     "phone": "+4915730967248",
     "url": "https://muensterer.tech",
+    "website": "https://muensterer.tech",
     "summary": "As a full stack developer, I have worked on a multitude of projects, from mobile apps to websites. \nSince starting my dev journey at the Apple Developer Academy in Naples, I have garnered over 5 years of work experience, crafting cross-platform and web-based experiences for clients from a wide range of industries.",
     "summary_de": "Als Full-Stack Entwickler habe ich bereits an der vollen Bandbreite gearbeitet, von mobilen Apps zu Webanwendungen und Backend-Services. \nSeit meiner Teilnahme an der Apple Developer Academy in Neapel konnte ich über 5 Jahre Erfahrung sammeln. Dabei erstellte ich platformübergreifende und webbasierte Applikationen für Kunden aus verschiedenen Branchen.",
     "location": {
-      "address": "",
       "postalCode": "55118",
       "city": "Mainz",
-      "countryCode": "DE"
+      "countryCode": "DE",
+      "address": "Mainz, Germany"
     },
+    "birth": {
+      "place": "Durham, North Carolina",
+      "state": "USA",
+      "date": "1997-06-16"
+    },
+    "nationalities": [
+      "Germany",
+      "USA",
+      "Canada"
+    ],
     "profiles": [
       {
         "network": "LinkedIn",
@@ -35,19 +49,28 @@
   },
   "work": [
     {
-      "name": "3st Kommunikation GmbH",
-      "location": "Mainz, DE",
+      "name": "3st",
+      "company": "3st",
+      "organization": "3st Kommunikation GmbH",
+      "location": "Mainz, Germany",
       "description": "digital, branding and content",
       "position": "Junior Developer",
       "url": "https://www.3st.de/en",
       "url_de": "https://www.3st.de",
       "startDate": "2024-12-01",
-      "badges": ["Agency"],
-      "badges_de": ["Agentur"]
+      "badges": [
+        "Agency"
+      ],
+      "badges_de": [
+        "Agentur"
+      ],
+      "highlights": []
     },
     {
-      "name": "hpm GmbH",
-      "location": "Wiesbaden-Erbenheim, DE",
+      "name": "hpm",
+      "organization": "hpm GmbH",
+      "company": "hpm GmbH",
+      "location": "Wiesbaden-Erbenheim, Germany",
       "description": "Digital Excellence",
       "position": "Developer",
       "position_de": "Fachinformatiker für Anwendungsentwicklung",
@@ -60,21 +83,8 @@
         "Created an internal wiki-website as a final project of my apprenticeship",
         "Worked on projects such as the TESORA mobile-app and the VOTEOS blockchain-voting software"
       ],
-      "badges": ["Hybrid"]
-    }
-  ],
-  "volunteer": [
-    {
-      "organization": "Behindertenseelsorge Mainz",
-      "position": "FSJ",
-      "url": "https://bistummainz.de/seelsorge/behindertenseelsorge/",
-      "startDate": "2015-09-01",
-      "endDate": "2016-03-31",
-      "summary": "Helping people with disabilities",
-      "summary_de": "Freizeiten für Menschen mit Behinderung",
-      "highlights": [
-        "Volunteered on trips for groups of children, teenagers and adults with disabilities",
-        "Destinations included Rome, Italy and De Rijp, Netherlands"
+      "badges": [
+        "Hybrid"
       ]
     }
   ],
@@ -83,14 +93,15 @@
       "institution": "Digital Product School",
       "url": "https://www.digitalproductschool.io/",
       "area": "Software Engineer",
-      "studyType": "training program",
+      "studyType": "Training Program",
       "startDate": "2024-09-06",
       "endDate": "2024-11-30",
       "courses": [
         "User-centered Design",
         "Agile Methodologies",
         "Lean Startup"
-      ]
+      ],
+      "location": "Munich, Germany"
     },
     {
       "institution": "FES Wiesbaden",
@@ -148,12 +159,28 @@
       "studyType": "Gymnasium"
     }
   ],
+  "volunteer": [
+    {
+      "organization": "Behindertenseelsorge Mainz",
+      "position": "FSJ",
+      "url": "https://bistummainz.de/seelsorge/behindertenseelsorge/",
+      "startDate": "2015-09-01",
+      "endDate": "2016-03-31",
+      "summary": "Helping people with disabilities",
+      "summary_de": "Freizeiten für Menschen mit Behinderung",
+      "highlights": [
+        "Volunteered on trips for groups of children, teenagers and adults with disabilities",
+        "Destinations included Rome, Italy and De Rijp, Netherlands"
+      ]
+    }
+  ],
   "awards": [
     {
-      "title": "Medienberg Hack 2019 - Smart Media",
-      "date": "2019-11-28",
-      "awarder": "VRM",
-      "summary": "Hackathon Project. My team created an Alexa Skill that employed Text-to-Speech to guide through a text based RPG using the Twine-format."
+      "title": "Circular Hackfest 2023 - Best Business Opportunity",
+      "url": "https://hackfest.tech",
+      "date": "2023-11-16",
+      "awarder": "Circular Republic",
+      "summary": "My team worked on a robot that can cook and slice kebab meat. I helped rewrite the Arduino code and built an app to remotely control the robot."
     },
     {
       "title": "IT-Talents Scholarship",
@@ -162,11 +189,10 @@
       "summary": "During my apprenticeship, I was awarded a year-long monthly stipend. An [interview](https://it-talents.de/partnerunternehmen/dennis-erhaelt-ein-it-stipendium/) was published."
     },
     {
-      "title": "Circular Hackfest 2023 - Best Business Opportunity",
-      "url": "https://hackfest.tech",
-      "date": "2023-11-16",
-      "awarder": "Circular Republic",
-      "summary": "My team worked on a robot that can cook and slice kebab meat. I helped rewrite the Arduino code and built an app to remotely control the robot."
+      "title": "Medienberg Hack 2019 - Smart Media",
+      "date": "2019-11-28",
+      "awarder": "VRM",
+      "summary": "Hackathon Project. My team created an Alexa Skill that employed Text-to-Speech to guide through a text based RPG using the Twine-format."
     }
   ],
   "certificates": [
@@ -180,22 +206,51 @@
     {
       "name": "Web Development",
       "level": "Advanced",
-      "keywords": ["React", "Svelte", "Javascript", "node.js"]
+      "keywords": [
+        "React",
+        "Svelte",
+        "Javascript",
+        "Next.js",
+        "MUI/AntDesign"
+      ]
     },
     {
       "name": "App Development",
       "level": "Intermediate",
-      "keywords": ["React Native", "iOS", "Swift", "Android", "Expo"]
+      "keywords": [
+        "React Native",
+        "iOS",
+        "Swift",
+        "Android",
+        "Expo"
+      ]
     },
     {
-      "name": "Test Driven Development",
-      "level": "Intermediate",
-      "keywords": ["Jest", "Vitest"]
+      "name": "Backend Development",
+      "level": "Beginner",
+      "keywords": [
+        "ActionHero",
+        "REST",
+        "GraphQL",
+        "MySQL"
+      ]
     },
     {
-      "name": "Technologies and Methodologies",
-      "name_de": "Technologien and Methoden",
-      "keywords": ["GitLab", "Docker", "UML", "Agile"]
+      "name": "Infrastructure",
+      "name_de": "Infrastruktur",
+      "keywords": [
+        "GitLab (CI/CD)",
+        "Docker"
+      ]
+    },
+    {
+      "name": "Methodologies",
+      "name_de": "Methoden",
+      "keywords": [
+        "TDD (Jest/Vitest)",
+        "Agile Development",
+        "UML / Documentation"
+      ]
     }
   ],
   "languages": [
@@ -206,25 +261,10 @@
     {
       "language": "German",
       "fluency": "Native speaker"
-    }
-  ],
-  "interests": [
-    {
-      "name": "Music",
-      "name_de": "Musik",
-      "keywords": ["Piano", "Hip Hop"]
     },
     {
-      "name": "Making",
-      "keywords": ["3d Printing", "Raspberry Pi", "Arduino"]
-    },
-    {
-      "name": "Gaming",
-      "keywords": ["VR", "Indie", "Handheld"]
-    },
-    {
-      "name": "Smart Home",
-      "keywords": ["Home Assistant", "Zigbee"]
+      "language": "French",
+      "fluency": "Beginner"
     }
   ],
   "projects": [
@@ -240,10 +280,15 @@
         "Über 1000 Downloads im Raycast Store",
         "Auf meine Nachfrage wurde BTT erweitert, um das Laden von 'named triggers' zu ermöglichen"
       ],
-      "keywords": ["BetterTouchTool", "Raycast"],
+      "keywords": [
+        "BetterTouchTool",
+        "Raycast"
+      ],
       "startDate": "2023-03-01",
       "url": "https://www.raycast.com/dnnsmnstrr/bettertouchtool",
-      "roles": ["Developer"],
+      "roles": [
+        "Developer"
+      ],
       "type": "application"
     },
     {
@@ -254,22 +299,39 @@
         "I was responsible for the development of the mobile app on iOS and Android with React Native"
       ],
       "highlights_de": [
-        "I was responsible for the development of the mobile app on iOS and Android with React Native"
+        "Ich war verantwortlich für die Entwicklung der mobilen App auf iOS and Android"
       ],
-      "keywords": ["Finances", "Cross-Platform"],
-      "keywords_de": ["Finanzen", "Plattformübergreifend"],
+      "keywords": [
+        "Finances",
+        "Cross-Platform"
+      ],
+      "keywords_de": [
+        "Finanzen",
+        "Plattformübergreifend"
+      ],
       "url": "https://tesora.app/",
-      "roles": ["App Developer"],
-      "type": "application"
+      "roles": [
+        "App Developer"
+      ],
+      "type": "application",
+      "startDate": "2020-02-01",
+      "endDate": "2024-06-01"
     },
     {
       "name": "Redairect",
       "description": "Custom redirects-API that allows defining aliases for links",
-      "highlights": ["Uses next.js for simple hosting & deployment on Vercel"],
-      "keywords": ["Vercel", "Javascript"],
+      "highlights": [
+        "Uses next.js for simple hosting & deployment on Vercel"
+      ],
+      "keywords": [
+        "Vercel",
+        "Javascript"
+      ],
       "startDate": "2019-08-24",
       "url": "https://redairect.com",
-      "roles": ["Developer"],
+      "roles": [
+        "Developer"
+      ],
       "type": "application"
     },
     {
@@ -286,18 +348,64 @@
         "Transponiere Songs in deine Stimmlage",
         "Führe Statistik wie oft du welches Lied gespielt hast"
       ],
-      "keywords": ["Expo", "Music"],
-      "keywords_de": ["Expo", "Musik"],
+      "keywords": [
+        "Expo",
+        "Music"
+      ],
+      "keywords_de": [
+        "Expo",
+        "Musik"
+      ],
       "startDate": "2019-12-22",
       "url": "https://progressions.live",
-      "roles": ["Developer", "Musician"],
+      "roles": [
+        "Developer",
+        "Musician"
+      ],
       "type": "application"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Music",
+      "name_de": "Musik",
+      "keywords": [
+        "Piano",
+        "Hip Hop"
+      ],
+      "keywords_de": [
+        "Klavier",
+        "Hip Hop"
+      ]
+    },
+    {
+      "name": "Making",
+      "keywords": [
+        "3d Printing",
+        "Raspberry Pi",
+        "Arduino"
+      ]
+    },
+    {
+      "name": "Gaming",
+      "keywords": [
+        "VR",
+        "Indie",
+        "Handheld"
+      ]
+    },
+    {
+      "name": "Smart Home",
+      "keywords": [
+        "Home Assistant",
+        "Zigbee"
+      ]
     }
   ],
   "meta": {
     "theme": "elegant",
     "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/resume.json",
     "version": "v1.0.0",
-    "lastModified": "2024-10-13T12:12:12"
+    "lastModified": "2024-11-09T12:12:12"
   }
 }

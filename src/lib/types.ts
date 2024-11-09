@@ -44,7 +44,7 @@ export type JSONResume = {
             /** The URL to the profile */
             url: string;
         }>;
-        [translatedKey: string]: string | Array<Record<string, string | undefined>> | Record<string, string | undefined> | undefined;
+        [translatedKey: string]: string | string[] | Array<Record<string, string | undefined>> | Record<string, string | undefined> | undefined;
     };
 
     /** The work experience section */

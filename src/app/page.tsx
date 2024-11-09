@@ -13,10 +13,11 @@ import { getInitials, getMonthName, getTranslatedKey } from "@/lib/utils";
 import { SUPPORTED_LANGUAGES, translations } from "@/lib/i18n";
 import { JSONResume } from "@/lib/types";
 import jsonResume  from '@/data/resume.json'
+
 export default function Page() {
   const RESUME_DATA: JSONResume = jsonResume
-
   const [selectedLanguage, setSelectedLanguage] = useState<keyof typeof translations>(SUPPORTED_LANGUAGES[0])
+
   useEffect(() => {
     // Enable linking to specific language hash
     const handleHashChange = () => {
@@ -30,7 +31,7 @@ export default function Page() {
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
     };
-  }, []); // Empty dependency array ensures this runs only on mount and unmount
+  }, []);
 
   const socialIcons = {
     LinkedIn: <LinkedInIcon className="h-4 w-4" />,
@@ -140,7 +141,7 @@ export default function Page() {
 
           <Avatar className="h-28 w-28">
             <AvatarImage alt={RESUME_DATA.basics.name} src={RESUME_DATA.basics.image} />
-            <AvatarFallback>{String(RESUME_DATA.basics.initials) || getInitials(RESUME_DATA.basics.name)}</AvatarFallback>
+            <AvatarFallback>{RESUME_DATA.basics.initials ? String(RESUME_DATA.basics.initials) : getInitials(RESUME_DATA.basics.name)}</AvatarFallback>
           </Avatar>
         </div>
         <Section>
@@ -245,7 +246,7 @@ export default function Page() {
         </div>
         <Section className="print-force-new-page">
           <div className="hidden print:flex w-full justify-between">
-            <div>CV - {RESUME_DATA.basics.name}</div>
+            <div>{translations[selectedLanguage].cv} - {RESUME_DATA.basics.name}</div>
           </div>
 
           <h2 className="text-xl font-bold print:mt-8">{translations[selectedLanguage].skills}</h2>
@@ -282,21 +283,22 @@ export default function Page() {
           <h2 className="text-xl font-bold">{translations[selectedLanguage].interests}</h2>
           <div className="flex flex-wrap gap-1">
             {(RESUME_DATA.interests || []).map((interest) => {
-              const { name, keywords } = interest
+              const name = getTranslatedKey('name', selectedLanguage, interest)
+              const keywords = getTranslatedKey('keywords', selectedLanguage, interest)
               const interests = keywords?.join(', ')
-              return <Badge key={name} title={interests}>{interest['name_' + selectedLanguage] || name}<span className="hidden print:block ml-2">({interests})</span></Badge>;
+              return <Badge key={name} title={interests}>{name}<span className="hidden print:block ml-2">({interests})</span></Badge>;
             })}
           </div>
         </Section>
 
         <Section className="hidden print:flex flex-col justify-between h-80 mt-8 border-t pt-6 ">
           <div className="flex flex-col justify-start items-start gap-x-4">
-            <div className="text-base">
+            <div className="text-sm">
               {RESUME_DATA.basics.location?.city || translations[selectedLanguage].city}, {new Date().toLocaleDateString(selectedLanguage === 'en' ? 'en-US' : 'de-DE')}
             </div>
             <div className="flex flex-col pt-2">
-              <div className="text-sm mt-8 w-40 border-t border-gray-700">
-                {RESUME_DATA.name}
+              <div className="text-xs mt-8 border-t border-gray-700">
+                {RESUME_DATA.basics.name}
               </div>
             </div>
           </div>
