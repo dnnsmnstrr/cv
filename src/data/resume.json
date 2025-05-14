@@ -54,8 +54,7 @@
       "organization": "3st Kommunikation GmbH",
       "location": "Mainz, Germany",
       "description": "digital, branding and content",
-      "position": "Full-Stack Developer",
-      "position_de": "Full-Stack Entwickler",
+      "position": "Junior Developer",
       "url": "https://www.3st.de/en",
       "url_de": "https://www.3st.de",
       "startDate": "2024-12-01",
@@ -293,49 +292,6 @@
       "type": "application"
     },
     {
-      "name": "TESORA",
-      "description": "Local-first mobile app to track valuable assets created by hpm.",
-      "description_de": "App zum Verwalten von Sachwerten und Sammlungen, entwickelt bei hpm.",
-      "highlights": [
-        "I was responsible for the development of the mobile app on iOS and Android with React Native"
-      ],
-      "highlights_de": [
-        "Ich war verantwortlich für die Entwicklung der mobilen App auf iOS and Android"
-      ],
-      "keywords": [
-        "Finances",
-        "Cross-Platform"
-      ],
-      "keywords_de": [
-        "Finanzen",
-        "Plattformübergreifend"
-      ],
-      "url": "https://tesora.app/",
-      "roles": [
-        "App Developer"
-      ],
-      "type": "application",
-      "startDate": "2020-02-01",
-      "endDate": "2024-06-01"
-    },
-    {
-      "name": "Redairect",
-      "description": "Custom redirects-API that allows defining aliases for links",
-      "highlights": [
-        "Uses next.js for simple hosting & deployment on Vercel"
-      ],
-      "keywords": [
-        "Vercel",
-        "Javascript"
-      ],
-      "startDate": "2019-08-24",
-      "url": "https://redairect.com",
-      "roles": [
-        "Developer"
-      ],
-      "type": "application"
-    },
-    {
       "name": "Progressions",
       "description": "App to manage a personal library of lyrics and chords",
       "description_de": "Eine persönliche Sammlung von Akkorden und Songtexten als App",
@@ -373,10 +329,6 @@
       "keywords": [
         "Piano",
         "Hip Hop"
-      ],
-      "keywords_de": [
-        "Klavier",
-        "Hip Hop"
       ]
     },
     {
@@ -407,6 +359,6 @@
     "theme": "elegant",
     "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/resume.json",
     "version": "v1.0.0",
-    "lastModified": "2024-11-09T12:12:12"
+    "lastModified": "2025-05-15T12:12:12"
   }
 }
