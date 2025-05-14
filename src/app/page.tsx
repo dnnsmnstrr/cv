@@ -12,26 +12,48 @@ import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
 import { getInitials, getMonthName, getTranslatedKey } from "@/lib/utils";
 import { SUPPORTED_LANGUAGES, translations } from "@/lib/i18n";
 import { JSONResume } from "@/lib/types";
-import jsonResume  from '@/data/resume.json'
+
+const GIST_URL = process.env.NEXT_PUBLIC_GIST_URL || "";
 
 export default function Page() {
-  const RESUME_DATA: JSONResume = jsonResume
-  const [selectedLanguage, setSelectedLanguage] = useState<keyof typeof translations>(SUPPORTED_LANGUAGES[0])
+  const [resumeData, setResumeData] = useState<JSONResume | null>(null);
+  const [selectedLanguage, setSelectedLanguage] = useState<keyof typeof translations>(SUPPORTED_LANGUAGES[0]);
 
+  console.log(GIST_URL)
   useEffect(() => {
-    // Enable linking to specific language hash
+    async function fetchResume() {
+      try {
+        const response = await fetch(GIST_URL, { mode: 'no-cors' });
+        if (!response.ok) {
+          throw new Error("Failed to fetch resume data");
+        }
+        const data = await response.json();
+        console.log(data)
+        setResumeData(data);
+      } catch (error) {
+        console.error("Error fetching resume data:", error);
+      }
+    }
+
+    fetchResume();
+
     const handleHashChange = () => {
-      const hashLanguage = window.location.hash.replace('#', '') as typeof SUPPORTED_LANGUAGES[number]
-      const initialLanguage = SUPPORTED_LANGUAGES.includes(hashLanguage) ? hashLanguage : SUPPORTED_LANGUAGES[0]
+      const hashLanguage = window.location.hash.replace("#", "") as typeof SUPPORTED_LANGUAGES[number];
+      const initialLanguage = SUPPORTED_LANGUAGES.includes(hashLanguage) ? hashLanguage : SUPPORTED_LANGUAGES[0];
       setSelectedLanguage(initialLanguage);
     };
+
     handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener("hashchange", handleHashChange);
 
     return () => {
-      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener("hashchange", handleHashChange);
     };
   }, []);
+
+  if (!resumeData) {
+    return <div>Loading...</div>;
+  }
 
   const socialIcons = {
     LinkedIn: <LinkedInIcon className="h-4 w-4" />,
@@ -47,20 +69,20 @@ export default function Page() {
 
   const months = translations[selectedLanguage].months;
   const translatedMonths = Array.isArray(months) ? [...months] : [months];
-  
+
   const links = [
     {
-      url: 'mailto:' + RESUME_DATA.basics.email,
+      url: 'mailto:' + resumeData.basics.email,
       title: translations[selectedLanguage].email,
     },
-    ...(RESUME_DATA.basics.profiles || []).map((socialMediaProfile) => ({
+    ...(resumeData.basics.profiles || []).map((socialMediaProfile) => ({
       url: socialMediaProfile.url,
       title: String(socialMediaProfile.network),
     })),
   ]
-  if (RESUME_DATA.basics.url) {
+  if (resumeData.basics.url) {
     links.unshift({
-      url: RESUME_DATA.basics.url,
+      url: resumeData.basics.url,
       title: String(translations[selectedLanguage].homepage),
     })
   }
@@ -69,49 +91,49 @@ export default function Page() {
       <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex-1 space-y-1.5">
-            <h1 className="text-2xl font-bold">{RESUME_DATA.basics.name}</h1>
+            <h1 className="text-2xl font-bold">{resumeData.basics.name}</h1>
             <p className="max-w-md text-pretty font-mono text-sm text-muted-foreground">
-              {String(getTranslatedKey('label', selectedLanguage, RESUME_DATA.basics))} {RESUME_DATA.basics.location ? translations[selectedLanguage].from + ' ' + getTranslatedKey('city', selectedLanguage, RESUME_DATA.basics.location) : ''}
+              {String(getTranslatedKey('label', selectedLanguage, resumeData.basics))} {resumeData.basics.location ? translations[selectedLanguage].from + ' ' + getTranslatedKey('city', selectedLanguage, resumeData.basics.location) : ''}
             </p>
-            
-            {RESUME_DATA.basics.url ? (
+
+            {resumeData.basics.url ? (
               <p className="max-w-md items-center text-pretty font-mono text-xs text-muted-foreground">
                 <a
                   className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
-                  href={RESUME_DATA.basics.url}
+                  href={resumeData.basics.url}
                   target="_blank"
                 >
                   <GlobeIcon className="h-3 w-3" />
-                  {RESUME_DATA.basics.url.replace('https://', '')}
+                  {resumeData.basics.url.replace('https://', '')}
                 </a>
               </p>
             ) : null}
             <div className="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden">
-              {RESUME_DATA.basics.email ? (
+              {resumeData.basics.email ? (
                 <Button
                   className="h-8 w-8"
                   variant="outline"
                   size="icon"
                   asChild
                 >
-                  <a href={`mailto:${RESUME_DATA.basics.email}`}>
+                  <a href={`mailto:${resumeData.basics.email}`}>
                     <MailIcon className="h-4 w-4" />
                   </a>
                 </Button>
               ) : null}
-              {RESUME_DATA.basics.phone ? (
+              {resumeData.basics.phone ? (
                 <Button
                   className="h-8 w-8"
                   variant="outline"
                   size="icon"
                   asChild
                 >
-                  <a href={`tel:${RESUME_DATA.basics.phone}`}>
+                  <a href={`tel:${resumeData.basics.phone}`}>
                     <PhoneIcon className="h-4 w-4" />
                   </a>
                 </Button>
               ) : null}
-              {(RESUME_DATA.basics.profiles || []).map((social) => (
+              {(resumeData.basics.profiles || []).map((social) => (
                 <Button
                   key={social.network}
                   className="h-8 w-8"
@@ -126,33 +148,33 @@ export default function Page() {
               ))}
             </div>
             <div className="hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex">
-              {RESUME_DATA.basics.email ? (
-                <a href={`mailto:${RESUME_DATA.basics.email}`}>
-                  <span className="underline">{RESUME_DATA.basics.email}</span>
+              {resumeData.basics.email ? (
+                <a href={`mailto:${resumeData.basics.email}`}>
+                  <span className="underline">{resumeData.basics.email}</span>
                 </a>
               ) : null}
-              {RESUME_DATA.basics.phone ? (
-                <a href={`tel:${RESUME_DATA.basics.phone}`}>
-                  <span className="underline">{RESUME_DATA.basics.phone}</span>
+              {resumeData.basics.phone ? (
+                <a href={`tel:${resumeData.basics.phone}`}>
+                  <span className="underline">{resumeData.basics.phone}</span>
                 </a>
               ) : null}
             </div>
           </div>
 
           <Avatar className="h-28 w-28">
-            <AvatarImage alt={RESUME_DATA.basics.name} src={RESUME_DATA.basics.image} />
-            <AvatarFallback>{RESUME_DATA.basics.initials ? String(RESUME_DATA.basics.initials) : getInitials(RESUME_DATA.basics.name)}</AvatarFallback>
+            <AvatarImage alt={resumeData.basics.name} src={resumeData.basics.image} />
+            <AvatarFallback>{resumeData.basics.initials ? String(resumeData.basics.initials) : getInitials(resumeData.basics.name)}</AvatarFallback>
           </Avatar>
         </div>
         <Section>
           <h2 className="text-xl font-bold">{translations[selectedLanguage].about}</h2>
           <p className="text-pretty font-mono text-sm text-muted-foreground">
-          {getTranslatedKey('summary', selectedLanguage, RESUME_DATA.basics)}
+            {getTranslatedKey('summary', selectedLanguage, resumeData.basics)}
           </p>
         </Section>
         <Section>
           <h2 className="text-xl font-bold">{translations[selectedLanguage].workExperience}</h2>
-          {(RESUME_DATA.work || []).map((work) => {
+          {(resumeData.work || []).map((work) => {
             let formattedStartDate = work.startDate.split('-')[0]
             const formattedEndDate = work.endDate ? work.endDate.split('-')[0] : ''
             if (formattedStartDate === formattedEndDate && work.endDate) {
@@ -202,7 +224,7 @@ export default function Page() {
         </Section>
         <Section>
           <h2 className="text-xl font-bold">{translations[selectedLanguage].education}</h2>
-          {(RESUME_DATA.education || []).map((education) => {
+          {(resumeData.education || []).map((education) => {
             let formattedStartDate = education.startDate.split('-')[0]
             const formattedEndDate = education.endDate ? education.endDate.split('-')[0] : ''
             if (formattedStartDate === formattedEndDate && education.endDate) {
@@ -246,12 +268,12 @@ export default function Page() {
         </div>
         <Section className="print-force-new-page">
           <div className="hidden print:flex w-full justify-between">
-            <div>{translations[selectedLanguage].cv} - {RESUME_DATA.basics.name}</div>
+            <div>{translations[selectedLanguage].cv} - {resumeData.basics.name}</div>
           </div>
 
           <h2 className="text-xl font-bold print:mt-8">{translations[selectedLanguage].skills}</h2>
           <div className="flex flex-wrap gap-1">
-            {(RESUME_DATA.skills || []).map((skill) => {
+            {(resumeData.skills || []).map((skill) => {
               const skills = skill.keywords?.join(', ')
               return <Badge key={skill.name} title={skills}>{getTranslatedKey('name', selectedLanguage, skill)}<span className="hidden print:block ml-2">({skills})</span></Badge>;
             })}
@@ -261,7 +283,7 @@ export default function Page() {
         <Section className="scroll-mb-16">
           <h2 className="text-xl font-bold">{translations[selectedLanguage].projects}</h2>
           <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-2 print:gap-2 md:grid-cols-2">
-            {(RESUME_DATA.projects || []).map((project) => {
+            {(resumeData.projects || []).map((project) => {
               const title = getTranslatedKey('name', selectedLanguage, project)
               const description = getTranslatedKey('description', selectedLanguage, project)
               const keywords = getTranslatedKey('keywords', selectedLanguage, project)
@@ -282,7 +304,7 @@ export default function Page() {
         <Section>
           <h2 className="text-xl font-bold">{translations[selectedLanguage].interests}</h2>
           <div className="flex flex-wrap gap-1">
-            {(RESUME_DATA.interests || []).map((interest) => {
+            {(resumeData.interests || []).map((interest) => {
               const name = getTranslatedKey('name', selectedLanguage, interest)
               const keywords = getTranslatedKey('keywords', selectedLanguage, interest)
               const interests = keywords?.join(', ')
@@ -294,11 +316,11 @@ export default function Page() {
         <Section className="hidden print:flex flex-col justify-between h-80 mt-8 border-t pt-6 ">
           <div className="flex flex-col justify-start items-start gap-x-4">
             <div className="text-sm">
-              {RESUME_DATA.basics.location?.city || translations[selectedLanguage].city}, {new Date().toLocaleDateString(selectedLanguage === 'en' ? 'en-US' : 'de-DE')}
+              {resumeData.basics.location?.city || translations[selectedLanguage].city}, {new Date().toLocaleDateString(selectedLanguage === 'en' ? 'en-US' : 'de-DE')}
             </div>
             <div className="flex flex-col pt-2">
               <div className="text-xs mt-8 border-t border-gray-700">
-                {RESUME_DATA.basics.name}
+                {resumeData.basics.name}
               </div>
             </div>
           </div>
@@ -312,7 +334,7 @@ export default function Page() {
         links={links}
         onChangeLanguage={() => window.location.assign(selectedLanguage === 'en' ? '/#de' : '/#en')}
         translations={translations[selectedLanguage]}
-      />    
+      />
     </main>
   );
 }
